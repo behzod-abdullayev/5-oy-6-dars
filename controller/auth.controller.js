@@ -1,6 +1,8 @@
 const User = require("../schema/auth.schema"); 
 const bcrypt = require("bcryptjs");
 const sendMessage = require("../utils/email.sender");
+const CustomErrorHandler = require("../utils/custom-error-handler");
+const tokenGenerator = require("../utils/token-generator");
 
 // register
 const register = async (req, res) => {
@@ -15,9 +17,7 @@ const register = async (req, res) => {
 
     const emailExists = await User.findOne({ email });
     if (emailExists) {
-      return res.status(401).json({
-        message: "email already exists",
-      });
+   throw CustomErrorHandler.UnAuthorized("use already exist")
     }
 
     const usernameExists = await User.findOne({ username });

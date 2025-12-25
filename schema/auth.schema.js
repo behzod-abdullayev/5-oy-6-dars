@@ -5,20 +5,26 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    trim: true
+    trim: true,
+    // match: [/^[a-zA-Z0-9]$/, "faqatgina raqam yoki harflarni kiritish mumkin"  ]
   },
   email: {
     type: String,
     required: true,
     unique: true,
-    lowercase: true
+    minLength: [10, "emailda kamida 10 ta belgi bo'lishi shart"]
   },
   password: {
     type: String,
-    required: true
+    required: true,
+    minLength: [8, "password kamida 8 ta belgidan iborat bo'lishi kerak"]
   },
   role: {
     type: String,
+    enum: {
+   values: ["user", "admin", "superadmin"],
+   message: `{VALUE} bunday qiymat qabul qilinmaydi`
+    },
     default: "user"
   },
   isVerified: {
