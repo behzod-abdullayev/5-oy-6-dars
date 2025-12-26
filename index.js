@@ -6,6 +6,7 @@ const BookRouter = require("./router/book.routes")
 const AuthRouter = require("./router/auth.routes")
 const errorMiddleware = require("./middleware/error.middleware")
 const router = require("./router/image.routes")
+const path = require("path")
 require("dotenv").config()
 
 
@@ -18,6 +19,9 @@ app.use(cors({origin: true, credentials: true}))
 app.use(express.json())
 
 connectDB()
+
+
+app.use("/images", express.static(path.join(__dirname, "6-dars/rasm")));
 
 //Router
 app.use(AuthorRouter)
