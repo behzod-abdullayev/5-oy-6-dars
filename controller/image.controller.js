@@ -1,5 +1,6 @@
 const Image = require("../schema/image.schema");
 const CustomErrorHandler = require("../utils/custom-error-handler");
+const PORT = process.env.PORT || 4001;
 
  const uploadImage = async (req, res, next) => {
     try {
@@ -9,7 +10,7 @@ const CustomErrorHandler = require("../utils/custom-error-handler");
             throw CustomErrorHandler.NotFound("url not found")
         }
 
-        const url = `http://localhost:4001/images/${filename}`;
+const url = `http://localhost:${PORT}/images/${filename}`;
 
         const newImage = new Image({ url, title });
         await newImage.save();

@@ -21,13 +21,15 @@ app.use(express.json())
 connectDB()
 
 
-app.use("/images", express.static(path.join(__dirname, "6-dars/rasm")));
+app.use("/images", express.static(path.join(__dirname, "rasm")));
+
 
 //Router
 app.use(AuthorRouter)
 app.use(BookRouter)
 app.use(AuthRouter)
-app.use(router)
+app.use( router)
+
 
 app.use(errorMiddleware)
 
