@@ -5,6 +5,7 @@ const AuthorRouter = require("./router/author.routes")
 const BookRouter = require("./router/book.routes")
 const AuthRouter = require("./router/auth.routes")
 const errorMiddleware = require("./middleware/error.middleware")
+const router = require("./router/image.routes")
 require("dotenv").config()
 
 
@@ -22,7 +23,7 @@ connectDB()
 app.use(AuthorRouter)
 app.use(BookRouter)
 app.use(AuthRouter)
-
+app.use(router)
 
 app.use(errorMiddleware)
 
